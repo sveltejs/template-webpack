@@ -1,0 +1,16 @@
+{
+  "name": "svelte-app",
+  "version": "1.0.0",
+  "devDependencies": {
+    "cross-env": "^5.1.1",
+    "serve": "^6.4.1",
+    "svelte": "^1.46.1",
+    "svelte-loader": "^2.1.0",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.7"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack",
+    "dev": "webpack-dev-server"
+  }
+}
