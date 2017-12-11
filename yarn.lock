@@ -3014,9 +3014,9 @@ svelte-loader@^2.1.0:
   dependencies:
     loader-utils "^1.1.0"
 
-svelte@^1.46.1:
-  version "1.46.1"
-  resolved "https://registry.yarnpkg.com/svelte/-/svelte-1.46.1.tgz#6fcad647df17f2961bff711d697d2643288c97ca"
+svelte@^1.47.0:
+  version "1.47.0"
+  resolved "https://registry.yarnpkg.com/svelte/-/svelte-1.47.0.tgz#bbced4f13d4f6964b1c919650b3ba418e87c63b2"
 
 tapable@^0.2.7:
   version "0.2.8"
