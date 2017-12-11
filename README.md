@@ -23,7 +23,7 @@ cd svelte-app
 npm install
 ```
 
-...then start [Rollup](https://rollupjs.org):
+...then start webpack:
 
 ```bash
 npm run dev
