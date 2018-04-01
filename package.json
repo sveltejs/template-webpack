@@ -2,18 +2,18 @@
   "name": "svelte-app",
   "version": "1.0.0",
   "devDependencies": {
-    "cross-env": "^5.1.1",
-    "css-loader": "^0.28.7",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "serve": "^6.4.1",
-    "style-loader": "^0.19.0",
-    "svelte": "^1.47.0",
-    "svelte-loader": "2.2.1",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.9.7"
+    "cross-env": "^5.1.4",
+    "css-loader": "^0.28.11",
+    "mini-css-extract-plugin": "^0.4.0",
+    "serve": "^6.5.3",
+    "svelte": "^1.59.0",
+    "svelte-loader": "2.5.1",
+    "webpack": "^4.4.1",
+    "webpack-cli": "^2.0.13",
+    "webpack-serve": "^0.3.1"
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
-    "dev": "webpack-dev-server"
+    "dev": "webpack-serve --content public --hot"
   }
 }

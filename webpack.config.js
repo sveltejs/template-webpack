@@ -1,9 +1,8 @@
-const { readFileSync } = require('fs');
 const webpack = require('webpack');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const prod = process.env.NODE_ENV === 'production';
+const mode = process.env.NODE_ENV || 'development';
+const prod = mode === 'production';
 
 module.exports = {
 	entry: {
@@ -27,26 +26,29 @@ module.exports = {
 					options: {
 						emitCss: true,
 						cascade: false,
-						store: true
+						store: true,
+						hotReload: true
 					}
 				}
 			},
 			{
 				test: /\.css$/,
-				use: ExtractTextPlugin.extract({
-					fallback: 'style-loader',
-					use: [{ loader: 'css-loader', options: { sourceMap: !prod } }]
-				})
+				use: [
+					MiniCssExtractPlugin.loader,
+					'css-loader'
+				]
 			}
 		]
 	},
+	mode,
 	plugins: [
-		new ExtractTextPlugin('bundle.css'),
-		prod && new webpack.optimize.ModuleConcatenationPlugin(),
-		prod && new UglifyJSPlugin()
+		!prod && new webpack.HotModuleReplacementPlugin(),
+		new MiniCssExtractPlugin({
+			filename: '[name].css'
+		})
 	].filter(Boolean),
 	devServer: {
 		contentBase: './public'
 	},
-	devtool: prod ? false: 'inline-source-map'
+	devtool: prod ? false: 'source-map'
 };
