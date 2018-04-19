@@ -25,8 +25,6 @@ module.exports = {
 					loader: 'svelte-loader',
 					options: {
 						emitCss: true,
-						cascade: false,
-						store: true,
 						hotReload: true
 					}
 				}
