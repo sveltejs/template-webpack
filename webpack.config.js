@@ -40,7 +40,6 @@ module.exports = {
 	},
 	mode,
 	plugins: [
-		!prod && new webpack.HotModuleReplacementPlugin(),
 		new MiniCssExtractPlugin({
 			filename: '[name].css'
 		})
