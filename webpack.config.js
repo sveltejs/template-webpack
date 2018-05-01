@@ -43,7 +43,7 @@ module.exports = {
 		new MiniCssExtractPlugin({
 			filename: '[name].css'
 		})
-	].filter(Boolean),
+	],
 	devServer: {
 		contentBase: './public'
 	},
