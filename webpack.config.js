@@ -48,8 +48,5 @@ module.exports = {
 			filename: '[name].css'
 		})
 	],
-	devServer: {
-		contentBase: './public'
-	},
 	devtool: prod ? false: 'source-map'
 };
