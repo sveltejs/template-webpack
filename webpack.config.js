@@ -34,7 +34,11 @@ module.exports = {
 			{
 				test: /\.css$/,
 				use: [
-					MiniCssExtractPlugin.loader,
+					/**
+					 * MiniCssExtractPlugin doesn't support HMR.
+					 * For developing, use 'style-loader' instead.
+					 * */
+					prod ? MiniCssExtractPlugin.loader : 'style-loader',
 					'css-loader'
 				]
 			}
@@ -46,8 +50,5 @@ module.exports = {
 			filename: '[name].css'
 		})
 	],
-	devServer: {
-		contentBase: './public'
-	},
 	devtool: prod ? false: 'source-map'
 };
