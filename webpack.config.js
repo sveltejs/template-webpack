@@ -9,7 +9,7 @@ module.exports = {
 		bundle: ['./src/main.js']
 	},
 	resolve: {
-		extensions: ['.js', '.html']
+		extensions: ['.js', '.svelte']
 	},
 	output: {
 		path: __dirname + '/public',
@@ -19,7 +19,7 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.html$/,
+				test: /\.svelte$/,
 				exclude: /node_modules/,
 				use: {
 					loader: 'svelte-loader',
