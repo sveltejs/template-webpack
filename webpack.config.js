@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const mode = process.env.NODE_ENV || 'development';
@@ -24,8 +23,6 @@ module.exports = {
 				use: {
 					loader: 'svelte-loader',
 					options: {
-						skipIntroByDefault: true,
-						nestedTransitions: true,
 						emitCss: true,
 						hotReload: true
 					}
