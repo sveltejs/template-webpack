@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const mode = process.env.NODE_ENV || 'development';
@@ -9,7 +8,7 @@ module.exports = {
 		bundle: ['./src/main.js']
 	},
 	resolve: {
-		extensions: ['.js', '.html']
+		extensions: ['.js', '.svelte']
 	},
 	output: {
 		path: __dirname + '/public',
@@ -19,13 +18,11 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.html$/,
+				test: /\.svelte$/,
 				exclude: /node_modules/,
 				use: {
 					loader: 'svelte-loader',
 					options: {
-						skipIntroByDefault: true,
-						nestedTransitions: true,
 						emitCss: true,
 						hotReload: true
 					}
