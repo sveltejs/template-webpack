@@ -1,4 +1,5 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const mode = process.env.NODE_ENV || 'development';
 const prod = mode === 'production';
@@ -11,7 +12,7 @@ module.exports = {
 		extensions: ['.mjs', '.js', '.svelte']
 	},
 	output: {
-		path: __dirname + '/public',
+		path: __dirname + '/dist',
 		filename: '[name].js',
 		chunkFilename: '[name].[id].js'
 	},
@@ -45,7 +46,8 @@ module.exports = {
 	plugins: [
 		new MiniCssExtractPlugin({
 			filename: '[name].css'
-		})
+		}),
+		new CopyPlugin([{ from: 'public' }])
 	],
 	devtool: prod ? false: 'source-map'
 };
