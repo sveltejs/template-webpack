@@ -12,7 +12,7 @@ module.exports = env => {
         extensions: [".wasm", ".mjs", ".js", ".svelte", ".json"],
         mainFields: ["svelte", "browser", "module", "main"]
       },
-      plugins: [new webpack.ProgressPlugin(), new HtmlWebpackPlugin({ template: "./src/index.html" })]
+      plugins: [new webpack.ProgressPlugin(), new HtmlWebpackPlugin({ template: "./src/index.html", favicon: "./src/favicon.png" })]
     },
     envConfig(env)
   );
