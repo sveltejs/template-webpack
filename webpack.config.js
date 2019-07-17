@@ -8,7 +8,8 @@ module.exports = {
 		bundle: ['./src/main.js']
 	},
 	resolve: {
-		extensions: ['.mjs', '.js', '.svelte']
+		extensions: ['.mjs', '.js', '.svelte'],
+		mainFields: ['svelte', 'browser', 'module', 'main']
 	},
 	output: {
 		path: __dirname + '/public',
