@@ -21,6 +21,12 @@ cd svelte-app
 npm install
 ```
 
+...prebuild `bundle.css` for reloading to work...
+
+```bash
+npm run build
+```
+
 ...then start webpack:
 
 ```bash
