@@ -6,17 +6,17 @@ const prod = mode === 'production';
 
 module.exports = {
 	entry: {
-		bundle: ['./src/main.js']
+		'build/bundle': ['./src/main.js']
 	},
 	resolve: {
 		alias: {
-			svelte: path.resolve('node_modules', 'svelte')
+			svelte: path.dirname(require.resolve('svelte/package.json'))
 		},
 		extensions: ['.mjs', '.js', '.svelte'],
 		mainFields: ['svelte', 'browser', 'module', 'main']
 	},
 	output: {
-		path: __dirname + '/public',
+		path: path.join(__dirname, '/public'),
 		filename: '[name].js',
 		chunkFilename: '[name].[id].js'
 	},
@@ -27,21 +27,27 @@ module.exports = {
 				use: {
 					loader: 'svelte-loader',
 					options: {
-						emitCss: true,
-						hotReload: true
+						compilerOptions: {
+							dev: !prod
+						},
+						emitCss: prod,
+						hotReload: !prod
 					}
 				}
 			},
 			{
 				test: /\.css$/,
 				use: [
-					/**
-					 * MiniCssExtractPlugin doesn't support HMR.
-					 * For developing, use 'style-loader' instead.
-					 * */
-					prod ? MiniCssExtractPlugin.loader : 'style-loader',
+					MiniCssExtractPlugin.loader,
 					'css-loader'
 				]
+			},
+			{
+				// required to prevent errors from Svelte on Webpack 5+
+				test: /node_modules\/svelte\/.*\.mjs$/,
+				resolve: {
+					fullySpecified: false
+				}
 			}
 		]
 	},
@@ -51,5 +57,8 @@ module.exports = {
 			filename: '[name].css'
 		})
 	],
-	devtool: prod ? false: 'source-map'
+	devtool: prod ? false : 'source-map',
+	devServer: {
+		hot: true
+	}
 };
