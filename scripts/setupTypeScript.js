@@ -57,13 +57,13 @@ function addDepsToPackageJson() {
 	const pkgJSONPath = path.join(projectRoot, 'package.json');
 	const packageJSON = JSON.parse(fs.readFileSync(pkgJSONPath, 'utf8'));
 	packageJSON.devDependencies = Object.assign(packageJSON.devDependencies, {
-		'ts-loader': '^8.0.4',
-		'@tsconfig/svelte': '^1.0.10',
-		'@types/node': '^14.11.1',
-		'svelte-check': '^1.0.46',
-		'svelte-preprocess': '^4.3.0',
-		tslib: '^2.0.1',
-		typescript: '^4.0.3'
+		'ts-loader': '^9.0.0',
+		'@tsconfig/svelte': '^3.0.0',
+		'@types/node': '^16.0.0',
+		'svelte-check': '^3.0.0',
+		'svelte-preprocess': '^5.0.0',
+		tslib: '^2.5.0',
+		typescript: '^4.9.0'
 	});
 
 	// Add script for checking
@@ -111,7 +111,7 @@ function updateWebpackConfig() {
 	replaceInFile(path.join(projectRoot, 'webpack.config.js'), [
 		// Edit imports
 		[
-			/require\('path'\);\n(?!const sveltePreprocess)/,
+			/require\('path'\);\r?\n(?!const sveltePreprocess)/,
 			`require('path');\nconst sveltePreprocess = require('svelte-preprocess');\n`
 		],
 		// Edit extensions
