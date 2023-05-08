@@ -128,12 +128,12 @@ function updateWebpackConfig() {
 		// Instead we look for 'hotReload: 'prod,'
 		[
 			/hotReload: \!prod(?!,\n\s*preprocess)/g,
-			'hotReload: !prod,\n\t\t\t\t\t\t\tpreprocess: sveltePreprocess({ sourceMap: !prod })'
+			'hotReload: !prod,\n\t\t\t\t\t\tpreprocess: sveltePreprocess({ sourceMap: !prod })'
 		],
 		// Add ts-loader
 		[
 			/module: {\n\s*rules: \[\n\s*(?!{\n\s*test: \/\\\.ts\$\/)/g,
-			`module: {\n\t\t\trules: [\n\t\t\t\t{\n\t\t\t\t\ttest: /\\.ts$/,\n\t\t\t\t\tloader: 'ts-loader',\n\t\t\t\t\texclude: /node_modules/\n\t\t\t\t},\n\t\t\t\t`,
+			`module: {\n\t\trules: [\n\t\t\t{\n\t\t\t\ttest: /\\.ts$/,\n\t\t\t\tloader: 'ts-loader',\n\t\t\t\texclude: /node_modules/\n\t\t\t},\n\t\t\t`,
 		]
 	]);
 }
