@@ -14,7 +14,7 @@ module.exports = {
 		},
 		extensions: ['.mjs', '.js', '.svelte'],
 		mainFields: ['svelte', 'browser', 'module', 'main'],
-		conditionNames: ['svelte']
+		conditionNames: ['svelte', 'browser']
 	},
 	output: {
 		path: path.join(__dirname, '/public'),
