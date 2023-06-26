@@ -9,9 +9,11 @@ module.exports = {
 		'build/bundle': ['./src/main.js']
 	},
 	resolve: {
-		alias: {
-			svelte: path.dirname(require.resolve('svelte/package.json'))
-		},
+		// The alias config shouldn't be needed most of the time, you only need to comment it in if you encounter weird
+		// Svelte runtime errors that hint at multiple Svelte runtime versions being pulled in. The alias helps dedupe them.
+		// alias: {
+		//   svelte: path.resolve('node_modules', 'svelte/src/runtime')
+		// },
 		extensions: ['.mjs', '.js', '.svelte'],
 		mainFields: ['svelte', 'browser', 'module', 'main'],
 		conditionNames: ['svelte', 'browser']
@@ -42,13 +44,6 @@ module.exports = {
 					MiniCssExtractPlugin.loader,
 					'css-loader'
 				]
-			},
-			{
-				// required to prevent errors from Svelte on Webpack 5+
-				test: /node_modules\/svelte\/.*\.mjs$/,
-				resolve: {
-					fullySpecified: false
-				}
 			}
 		]
 	},

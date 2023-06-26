@@ -58,12 +58,12 @@ function addDepsToPackageJson() {
 	const packageJSON = JSON.parse(fs.readFileSync(pkgJSONPath, 'utf8'));
 	packageJSON.devDependencies = Object.assign(packageJSON.devDependencies, {
 		'ts-loader': '^9.0.0',
-		'@tsconfig/svelte': '^3.0.0',
+		'@tsconfig/svelte': '^4.0.0',
 		'@types/node': '^16.0.0',
-		'svelte-check': '^3.0.0',
-		'svelte-preprocess': '^5.0.0',
+		'svelte-check': '^3.4.4',
+		'svelte-preprocess': '^5.0.4',
 		tslib: '^2.5.0',
-		typescript: '^4.9.0'
+		typescript: '^5.0.0'
 	});
 
 	// Add script for checking
@@ -127,12 +127,12 @@ function updateWebpackConfig() {
 		// Add preprocess to the svelte loader, this is tricky because there's no easy signifier.
 		// Instead we look for 'hotReload: 'prod,'
 		[
-			/hotReload: \!prod(?!,\n\s*preprocess)/g,
+			/hotReload: \!prod(?!,\r?\n\s*preprocess)/g,
 			'hotReload: !prod,\n\t\t\t\t\t\tpreprocess: sveltePreprocess({ sourceMap: !prod })'
 		],
 		// Add ts-loader
 		[
-			/module: {\n\s*rules: \[\n\s*(?!{\n\s*test: \/\\\.ts\$\/)/g,
+			/module: {\r?\n\s*rules: \[\r?\n\s*(?!{\r?\n\s*test: \/\\\.ts\$\/)/g,
 			`module: {\n\t\trules: [\n\t\t\t{\n\t\t\t\ttest: /\\.ts$/,\n\t\t\t\tloader: 'ts-loader',\n\t\t\t\texclude: /node_modules/\n\t\t\t},\n\t\t\t`,
 		]
 	]);
@@ -147,6 +147,12 @@ function createTsConfig() {
 	}`;
 
 	createFile(path.join(projectRoot, 'tsconfig.json'), tsconfig);
+}
+
+// Add ambient file so webpack/VS Code can pick up the Svelte ambient types
+function createSvelteAmbientFile() {
+	const file = '/// <reference types="svelte" />\n';
+	createFile(path.join(projectRoot, 'src', 'global.d.ts'), file);
 }
 
 // Adds the extension recommendation
@@ -191,6 +197,8 @@ updateSvelteFiles();
 updateWebpackConfig();
 
 createTsConfig();
+
+createSvelteAmbientFile();
 
 configureVsCode();
 
